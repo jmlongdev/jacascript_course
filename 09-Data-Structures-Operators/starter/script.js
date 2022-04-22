@@ -49,37 +49,156 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+////////// Working with Strings/////////////////////////
+
+const airline = 'TAB Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+console.log(airline.indexOf('portugal'));
+
+////////////////////// Challenge 3////////////////////////////
+
+// const gameEvents = new Map([
+//   [17, '⚽ GOAL'],
+//   [36, '� Substitution'],
+//   [47, '⚽ GOAL'],
+//   [61, '� Substitution'],
+//   [64, '� Yellow card'],
+//   [69, '� Red card'],
+//   [70, '� Substitution'],
+//   [72, '� Substitution'],
+//   [76, '⚽ GOAL'],
+//   [80, '⚽ GOAL'],
+//   [92, '� Yellow card'],
+// ]);
+
+// 1. Create an array 'events' of the different game events that happened
+// console.log(gameEvents.delete(64));
+// console.log(gameEvents);
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+// console.log([...events]);
+
+// 2.
+// console.log(gameEvents.delete(64));
+// console.log(gameEvents);
+
+// 3.
+// console.log(
+//   `An event happened, on average, every ${90 / gameEvents.size} minutes`
+// );
+// const time = [...gameEvents.keys()].pop();
+// console.log(
+//   `An event happened, on average, every ${time / gameEvents.size} minutes`
+// );
+
+// 4.
+
+// for (const [key, value] of gameEvents)
+//   key <= 45
+//     ? console.log(`[FIRST HALF] ${key}: ${value}`)
+//     : console.log(`[SECOND HALF] ${key}: ${value}`);
+
+// for (const [min, event] of gameEvents) {
+//   const half = min <= 45 ? 'FIRST' : 'SECOND';
+//   console.log(`[${half} HALF] ${min}: ${event}`);
+// }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+// for (const [key, value] of gameEvents) {
+//   if (key <= 45) {
+//     console.log(`[FIRST HALF] ${key}: ${value}`);
+//   } else {
+//     console.log(`[SECOND HALF] ${key}: ${value}`);
+//   }
+// }
+
+//
+//
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct 🎉'],
+//   [false, 'Try again!'],
+// ]);
+// console.log(question);
+
+// // Convert Object to Map
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+
+// //quiz app
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+// // const answer = Number(prompt('Your answer'));
+// const answer = 3;
+// console.log(answer);
+
+// const correctAns = Number(question.get('correct'));
+
+// // if (answer === correctAns) {
+// //   console.log(question.get(true));
+// // } else {
+// //   console.log(question.get(false));
+// // }
+// console.log(question.get(question.get('correct') === answer));
+
+// //Convert Map to Array
+// console.log([...question]);
+// // console.log([...question.entries()]);
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
+
 /////////  MAP - is a data structure that we can use to map data to keys /////
 
-const rest = new Map();
-rest.set('name', 'Classico Italiano');
-rest.set(1, 'Firenze, Italy');
-console.log(rest.set(2, 'Lisbon, Portugal'));
+// const rest = new Map();
+// rest.set('name', 'Classico Italiano');
+// rest.set(1, 'Firenze, Italy');
+// console.log(rest.set(2, 'Lisbon, Portugal'));
 
-rest
-  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
-  .set('open', 11)
-  .set('close', 23)
-  .set(true, 'We are open')
-  .set(false, 'We are close :(');
-console.log(rest.get('name'));
-console.log(rest.get(true));
-console.log(rest.get(1));
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open')
+//   .set(false, 'We are close :(');
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+// console.log(rest.get(1));
 
-const time = 21;
-console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+// const time = 21;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
 
-console.log(rest.has('categories'));
-rest.delete(2);
-// rest.clear();
+// console.log(rest.has('categories'));
+// rest.delete(2);
+// // rest.clear();
 
-const arr = [1, 2];
-rest.set(arr, 'Test');
-rest.set(document.querySelector('h1', 'heading'));
-console.log(rest);
-console.log(rest.size);
+// const arr = [1, 2];
+// rest.set(arr, 'Test');
+// rest.set(document.querySelector('h1', 'heading'));
+// console.log(rest);
+// console.log(rest.size);
 
-console.log(rest.get(arr));
+// console.log(rest.get(arr));
 
 ///////// Sets -  collection of unique values ////////////////////////
 
