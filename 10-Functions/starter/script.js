@@ -229,16 +229,16 @@ const poll = {
     typeof answer === 'number' &&
       answer < this.answers.length &&
       this.answers[answer]++;
-    // console.log(this.answers);
+    // 4.
     this.displayResults();
     this.displayResults('string');
   },
-
+  // 3.
   displayResults(type = 'array') {
     if (type === 'array') {
       console.log(this.answers);
     } else if (type === 'string') {
-      console.log(`Poll results are ${poll.answers.join(', ')}`);
+      console.log(`Poll results are ${this.answers.join(', ')}`);
     }
   },
 };
@@ -247,13 +247,9 @@ document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-// 3.
-// const displayResults = function (answers) {
-//   if(typeof poll.answers === 'string') {
-//     console.log(`Poll results are ${poll.answers[0]},${poll.answers[1]},${poll.answers[2]},${poll.answers[3]}`);
-//   }else {
-//     console.log(poll.answers);
-//   }
-// };
-// 4.
 // 5.(Bonus)
+poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+
+//
+//
