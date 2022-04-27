@@ -83,6 +83,24 @@ displayMovements(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
+
+// Challenge 1
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const correctDogs = dogsJulia.slice(1, 3);
+  const dogs = [...correctDogs, ...dogsKate];
+  dogs.forEach(function (dog, index) {
+    if (dog >= 3) {
+      console.log(
+        `Dog number ${index + 1} is an adult, and is ${dog} years old`
+      );
+    } else {
+      console.log(`Dog number ${index + 1} is still a puppy 🐶`);
+    }
+  });
+};
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
 // LECTURES
 
 // const currencies = new Map([
