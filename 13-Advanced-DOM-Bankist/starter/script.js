@@ -6,7 +6,10 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
-
+const nav = document.querySelector('.nav');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 ///////////////////////////////////////
 // Modal window
 
@@ -76,10 +79,6 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 /////////////////////////////////////////////////////////////////
 //// Tabbed Component
 
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabsContent = document.querySelectorAll('.operations__content');
-
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab'); //.closest SUPER IMPORTANT
 
@@ -98,6 +97,81 @@ tabsContainer.addEventListener('click', function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+////////////////////////////////////////////////////////
+//// Menu fade animation
+
+const handleHover = function (e) {
+  // console.log(this);
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('nav').querySelectorAll('.nav__link');
+    const logo = link.closest('nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+// Passing an 'argument' into handler
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+// nav.addEventListener('mouseover', function (e) {
+//   handleHover(e, 0.5);
+// });
+nav.addEventListener('mouseout', handleHover.bind(1));
+// nav.addEventListener('mouseout', function (e) {
+//   handleHover(e, 1);
+// });
+
+///////////////////////////
+/// Sticky Navigation
+// this implementation is not the most effective
+/*
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+window.addEventListener('scroll', function (e) {
+  console.log(window.scrollY);
+
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
+*/
+/*
+/// Sticky navigation pt2: Intersection Observer API
+// the callback function and options can be defined inside the new intersection observer but its a bit cleaner to define them outside and then use a variable name in the parenths
+
+const observerCallback = function (entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+const observerOptions = {
+  root: null,
+  //[0, 0.2] the zero triggers the callback funciton when it leaves the view and .2
+  // triggers the callback funciton when it enters the view at 20%
+  threshold: [0, 0.2],
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+observer.observe(section1);
+*/
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const header = document.querySelector('.header');
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: '-90px',
+});
+headerObserver.observe(header);
+
 //================================================================================
 /*
 
@@ -377,3 +451,6 @@ console.log(h1.parentElement.children);
 */
 /////////////////////////////////////////////////////
 /////Building a Tabbed Component
+
+/////////////////////////////////////////////////////
+///// Passing Arguments to Event Handlers
