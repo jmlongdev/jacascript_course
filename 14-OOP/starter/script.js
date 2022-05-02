@@ -139,7 +139,7 @@ console.log(max instanceof Person);
 
 /*
 // ===== Prototypes =====
-*/
+
 
 const Person = function (firstName, birthYear) {
   //Instance properties
@@ -172,4 +172,80 @@ console.log(max.species, amanda.species);
 console.log(max.hasOwnProperty('firstName'));
 console.log(max.hasOwnProperty('species'));
 
+console.log(max.__proto__); //Person.prototype
+console.log(max.__proto__.__proto__); // Object.prototype
+console.log(max.__proto__.__proto__.__proto__); //null
+
+console.log(Person.prototype.constructor);
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 4, 5, 6, 5, 6, 7];
+console.log(arr.__proto__); //Array.prototype
+console.log(arr.__proto__ === Array.prototype);
+console.log(arr.__proto__.__proto__); //Object.prototype
+
+// dont do this but a great example of how to create things
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1);
+
+*/
 //===============================================================================
+
+/* Coding Challenge 1
+
+const Car = function (make, speed) {
+  (this.make = make), (this.speed = speed);
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`The ${this.make}'s speed is ${this.speed}km/h`);
+};
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`The ${this.make}'s speed is ${this.speed}km/h`);
+};
+
+const bmw = new Car('BMW', 120);
+const mercedes = new Car('Mercedes', 95);
+
+bmw.accelerate();
+bmw.brake();
+mercedes.accelerate();
+mercedes.brake();
+ */
+
+//===============================================================================
+
+// ===== ES6 Classes =====
+
+// class Expression
+// const PersonCl = class {};
+
+// class declaration
+class PersonCl {
+  constructor(firstName, birthYear) {
+    (this.firstName = firstName), (this.birthYear = birthYear);
+  }
+
+  //here Methods will be added to the .prototype property and not
+  // the constructor
+  calcAge() {
+    console.log(2022 - this.birthYear);
+  }
+}
+
+const sam = new PersonCl('Sam', 1995);
+console.log(sam);
+sam.calcAge();
+
+console.log(sam.__proto__ === PersonCl.prototype);
+
+// 1. Classes are NOT hoisted
+// 2. Classes are also first-class, like  functions
+// 3. Classes are executed in strict mode
