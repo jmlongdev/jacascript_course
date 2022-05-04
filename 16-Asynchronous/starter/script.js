@@ -39,10 +39,10 @@ getCountryData('portugal');
 // getCountryData('canada');
 // getCountryData('germany');
 */
-const renderCountry = function (data) {
+const renderCountry = function (data, className = '') {
   const cur = Object.keys(data.currencies)[0];
   const lang = Object.keys(data.languages)[0];
-  const html = `<article class="country">
+  const html = `<article class="country ${className}">
     <img class="country__img" src="${data.flags.png}" />
     <div class="country__data">
       <h3 class="country__name">${data.name.common}</h3>
@@ -58,6 +58,7 @@ const renderCountry = function (data) {
   countriesContainer.style.opacity = 1;
 };
 const getCountryAndNeighbor = function (country) {
+  //AJAX call country 1
   const request = new XMLHttpRequest();
   request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
   request.send();
@@ -65,9 +66,36 @@ const getCountryAndNeighbor = function (country) {
   request.addEventListener('load', function () {
     const [data] = JSON.parse(this.responseText);
     console.log(data);
-
+    // Render Country 1
     renderCountry(data);
+    //Get neighbor country 2
+    const neighbor = data.borders?.[0];
+    if (!neighbor) return;
+    // AJAX call country 2
+    const request2 = new XMLHttpRequest();
+    request2.open('GET', `https://restcountries.com/v3.1/alpha/${neighbor}`);
+    request2.send();
+    request2.addEventListener('load', function () {
+      const [data2] = JSON.parse(this.responseText);
+      console.log(data2);
+      renderCountry(data2, 'neighbor');
+    });
   });
 };
 
-getCountryAndNeighbor('portugal');
+// getCountryAndNeighbor('portugal');
+getCountryAndNeighbor('usa');
+
+//small example of callback hell
+setTimeout(() => {
+  console.log('1 second passed');
+  setTimeout(() => {
+    console.log('2 second passed');
+    setTimeout(() => {
+      console.log('3 second passed');
+      setTimeout(() => {
+        console.log('4 second passed');
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}, 1000);
